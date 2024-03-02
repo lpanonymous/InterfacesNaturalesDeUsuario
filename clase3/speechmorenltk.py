@@ -1,6 +1,7 @@
 import speech_recognition as sr
 from nltk.tokenize import word_tokenize
 import nltk
+from nltk import grammar
 # Inicializar el reconocedor
 r = sr.Recognizer()
 
@@ -30,7 +31,6 @@ try:
     print(tokens)
     print("\nTokens etiquetados:")
     print(nltk.pos_tag(tokens))
-
 except sr.UnknownValueError:
     print("Google Speech Recognition no pudo entender el audio")
 except sr.RequestError as e:

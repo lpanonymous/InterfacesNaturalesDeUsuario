@@ -1,0 +1,41 @@
+
+% start S
+
+##S[sem = <app(?vp,?subj)>] -> NP[sem=?subj] VP[sem=?vp]
+##VP[sem=?v] -> V[sem=?v]
+##NP[sem=<john>] -> 'John'
+##V[sem=<\x.walk(x)>] -> 'walks'
+
+S -> INIT POSITION END
+INIT -> PLEASE MARK
+PLEASE -> 'please' 
+MARK -> 'mark'
+POSITION -> CELL NUMBER  
+CELL -> 'cell' 
+NUMBER -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+END ->  '.'
+
+
+##c(L) --> lead_in,arrange(L),end.
+
+##end --> ['.'] | ['?'].
+
+##lead_in --> please, place.
+##lead_in --> [i], [want] | [i], [would], [like], you_to_put.
+##lead_in --> ([can] | [could] | [would]), [you], please, place.
+
+##you_to_put --> [] | [you], [to], place.   %%% partially optional
+
+##please --> [] | [please].    %%% optional word
+
+##place --> [put] | [place].   %%% alternate words
+
+##arrange([ON]) --> on(ON).
+##arrange([ON|R]) --> on(ON), comma, arrange(R).
+
+##comma --> [','] | ['and'] | [','],[and].   %%% alternate words
+
+##on(on(X,Y)) --> block, [X], ([on] | [onto] | [on],[top],[of]), block, [Y].
+##on(on(X,table)) --> [X],([on] | [onto]), [the], [table].
+
+##block --> [] | [block].   %%% optional word
