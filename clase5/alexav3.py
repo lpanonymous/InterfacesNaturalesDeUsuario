@@ -8,7 +8,7 @@ import os
 class AudioPlayer:
     def __init__(self):
         self.__path_mp3 = "audio.mp3"
-        self.__audioString = "hola mundo"
+        self.__audioString = ""
     def play(self, audioString):
         self.__audioString = audioString
         print(self.__audioString)
