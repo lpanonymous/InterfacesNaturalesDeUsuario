@@ -1,16 +1,15 @@
 import os
 import numpy as np
 from PIL import Image
-from keras import models, layers
-from keras.layers import Dropout
-from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from sklearn.model_selection import train_test_split
 
 gestures = {'L_': 'L',
-           'fi': 'Fist',
-           'ok': 'Okay',
-           'pe': 'Peace',
-           'pa': 'Palm'
+            'fi': 'Fist',
+            'ok': 'Okay',
+            'pe': 'Peace',
+            'pa': 'Palm'
             }
 
 gestures_map = {'Fist': 0,
@@ -28,18 +27,6 @@ def process_image(path):
     return img
 
 
-def process_data(X_data, y_data):
-    X_data = np.array(X_data, dtype='float32')
-    if rgb:
-        pass
-    else:
-        X_data = np.stack((X_data,)*3, axis=-1)
-    X_data /= 255
-    y_data = np.array(y_data)
-    y_data = to_categorical(y_data)
-    return X_data, y_data
-
-
 def walk_file_tree(relative_path):
     X_data = []
     y_data = []
@@ -53,48 +40,47 @@ def walk_file_tree(relative_path):
                 y_data.append(gestures_map[gesture_name])
             else:
                 continue
-    X_data, y_data = process_data(X_data, y_data)
+                
     return X_data, y_data
 
 
-class Data(object):
-    def __init__(self):
-        self.X_data = []
-        self.y_data = []
-
-    def get_data(self):
-        return self.X_data, self.y_data
-
-
-relative_path = './silhouettes/'
-rgb = False
-
+relative_path = 'C:/Users/zS22000728/Documents/VS/InterfacesNaturalesDeUsuario/clase6/signrecognitionv1/silhouettes'
 X_data, y_data = walk_file_tree(relative_path)
+
+# Convertir a arrays numpy
+X_data = np.array(X_data, dtype='float32') / 255.0
+y_data = np.array(y_data)
+
+# Dividir en conjuntos de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=12, stratify=y_data)
 
-model = models.Sequential()
-model.add(layers.Conv2D(32, (5, 5), strides=(2, 2), activation='relu', input_shape=(224, 224, 3)))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Flatten())
-model.add(layers.Dense(128, activation='relu'))
-model.add(layers.Dense(128, activation='relu'))
-model.add(layers.Dense(128, activation='relu'))
-model.add(Dropout(0.25, seed=21))
-model.add(layers.Dense(5, activation='softmax'))
+# Ajustar la forma de los datos de entrada
+X_train = np.expand_dims(X_train, axis=-1)  # Agregar dimensión de canal
+X_test = np.expand_dims(X_test, axis=-1)  # Agregar dimensión de canal
 
-model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy'])
+# Construir el modelo
+model = Sequential()
+model.add(Conv2D(32, (5, 5), strides=(2, 2), activation='relu', input_shape=(224, 224, 1)))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D((2, 2)))
+model.add(Flatten())
+model.add(Dense(units=128, activation='relu'))
+model.add(Dense(units=128, activation='relu'))
+model.add(Dense(units=128, activation='relu'))
+model.add(Dropout(0.25, seed=21))
+model.add(Dense(units=5, activation='softmax'))
+
+# Compilar el modelo
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# Entrenar el modelo
 model.fit(X_train, y_train, epochs=4, batch_size=64, validation_data=(X_test, y_test), verbose=1)
 
-# evaluate the keras model
-_, accuracy = model.evaluate(X_data, y_data)
-print('Accuracy: %.2f' % (accuracy*100))
-# make class predictions with the model
-predictions = (model.predict(X_data) > 0.5).astype(int)
-# summarize the first 5 cases
-for i in range(5):
-    print('{} (expected {})'.format(predictions[i], y_data[i]))
+# Evaluar el modelo
+_, accuracy = model.evaluate(X_test, y_test)
+print('Accuracy: %.2f' % (accuracy * 100))
+
 
