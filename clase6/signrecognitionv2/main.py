@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from PIL import Image
-from keras.models import Sequential, load_model
+from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from sklearn.model_selection import train_test_split
 
@@ -32,7 +32,7 @@ def walk_file_tree(relative_path):
     return X_data, y_data
 
 # Ruta de las imágenes
-relative_path = 'C:/Users/zS22000728/Documents/VS/InterfacesNaturalesDeUsuario/clase6/signrecognitionv1/silhouettes'
+relative_path = 'C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/silhouettes'
 
 # Obtener los datos
 X_data, y_data = walk_file_tree(relative_path)
@@ -74,26 +74,6 @@ _, accuracy = model.evaluate(X_test, y_test)
 print('Accuracy: %.2f' % (accuracy * 100))
 
 # Guardar el modelo
-model.save('C:/Users/zS22000728/Documents/VS/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/modelo.h5')
+model.save('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/modelo.h5')
 print('Modelo guardado exitosamente.')
 
-# Cargar el modelo guardado
-loaded_model = load_model('C:/Users/zS22000728/Documents/VS/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/modelo.h5')
-
-# Procesar una imagen de prueba
-test_image_path = 'C:/Users/zS22000728/Documents/VS/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/silhouettes/fist_001.jpg'
-test_image = process_image(test_image_path)
-test_image = np.expand_dims(test_image, axis=0)  # Agregar dimensión para el lote de muestras
-test_image = np.expand_dims(test_image, axis=-1)  # Agregar dimensión para el canal de color
-
-# Hacer predicciones sobre la imagen de prueba
-predictions = loaded_model.predict(test_image)
-
-# Interpretar las predicciones para obtener el resultado
-gesture_names = {0: 'Fist', 1: 'L', 2: 'Okay', 3: 'Palm', 4: 'Peace'}
-predicted_class = np.argmax(predictions)
-predicted_gesture = gesture_names[predicted_class]
-confidence = predictions[0][predicted_class]
-
-print('Gesto predicho:', predicted_gesture)
-print('Confianza:', confidence)
