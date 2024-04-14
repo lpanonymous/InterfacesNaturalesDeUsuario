@@ -19,7 +19,7 @@ gesture_names = {0: 'Fist',
                  3: 'Palm',
                  4: 'Peace'}
 
-model = load_model('VGG_cross_validated.h5')
+model = load_model('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase7/saved_model.hdf5')
 
 
 def predict_rgb_image(img):
@@ -63,7 +63,7 @@ def remove_background(frame):
 
 
 # Camera
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 camera.set(10, 200)
 
 while camera.isOpened():
@@ -91,11 +91,11 @@ while camera.isOpened():
         # cv2.putText(thresh, f"Prediction: {prediction} ({score}%)", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
         # cv2.putText(thresh, f"Action: {action}", (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))  # Draw the text
         # Draw the text
-        cv2.putText(thresh, f"Prediction: {prediction} ({score}%)", (50, 30), cv2.FONT_HERSHEY_SIMPLEX, 1,
-                    (255, 255, 255))
+        #cv2.putText(thresh, f"Prediction: {prediction} ({score}%)", (50, 30), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                   # (255, 255, 255))
         #cv2.putText(thresh, f"Action: {action}", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 1,
         #            (255, 255, 255))  # Draw the text
-        cv2.imshow('ori', thresh)
+        cv2.imshow('ori', thresh) #mandar este frame para capturar el gesto en im
 
         # get the contours
         thresh1 = copy.deepcopy(thresh)
@@ -179,6 +179,7 @@ while camera.isOpened():
                 if k == 27:  # if ESC key
                     break
                 else:
+                    #capturar imágen del frame
                     cv2.imwrite(chr(k) + ".jpg", img2)
             else:
                 break

@@ -74,6 +74,6 @@ _, accuracy = model.evaluate(X_test, y_test)
 print('Accuracy: %.2f' % (accuracy * 100))
 
 # Guardar el modelo
-model.save('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/modelo.h5')
+model.save('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/modelo.hdf5')
 print('Modelo guardado exitosamente.')
 
