@@ -13,11 +13,10 @@ img_counter = 500
 # Turn on/off the ability to save images
 save_images, selected_gesture = False, 'peace'
 
-gesture_names = {0: 'Fist',
-                 1: 'L',
-                 2: 'Okay',
-                 3: 'Palm',
-                 4: 'Peace'}
+gesture_names = {0: 'A',
+                 1: 'B',
+                 2: 'C',
+                 3: 'D'}
 
 model = load_model('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase7/saved_model.hdf5')
 
