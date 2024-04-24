@@ -11,10 +11,6 @@ from datetime import datetime
 prediction = ''
 action = ''
 score = 0
-img_counter = 500
-
-# Turn on/off the ability to save images
-save_images, selected_gesture = False, 'peace'
 
 gesture_names = {0: 'A',
                  1: 'B',
@@ -22,13 +18,6 @@ gesture_names = {0: 'A',
                  3: 'D'}
 
 model = load_model('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase7/saved_model.hdf5')
-
-
-def predict_rgb_image(img):
-    result = gesture_names[model.predict_classes(img)[0]]
-    print(result)
-    return (result)
-
 
 def predict_rgb_image_vgg(image):
     image = np.array(image, dtype='float32')
@@ -46,7 +35,7 @@ def predict_rgb_image_vgg(image):
         syntax_analyzer = SyntaxAnalyzer()
         syntax_analyzer.analyze_syntax()
     elif result == 'B':
-        pywhatkit.sendwhatmsg("+522282226204", "Hola Boosito :)",datetime.now().hour, datetime.now().minute + 1,10,True,2)
+        pywhatkit.sendwhatmsg("+522282226204", "Hola Boosito :)",datetime.now().hour, datetime.now().minute + 1,15,True,2)
     return result, score
 
 
@@ -89,21 +78,11 @@ while camera.isOpened():
         img = remove_background(frame)
         img = img[0:int(cap_region_y_end * frame.shape[0]),
               int(cap_region_x_begin * frame.shape[1]):frame.shape[1]]  # clip the ROI
-        # cv2.imshow('mask', img)
 
         # convert the image into binary image
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         blur = cv2.GaussianBlur(gray, (blurValue, blurValue), 0)
-        # cv2.imshow('blur', blur)
         ret, thresh = cv2.threshold(blur, threshold, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-        # Add prediction and action text to thresholded image
-        # cv2.putText(thresh, f"Prediction: {prediction} ({score}%)", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))
-        # cv2.putText(thresh, f"Action: {action}", (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255))  # Draw the text
-        # Draw the text
-        #cv2.putText(thresh, f"Prediction: {prediction} ({score}%)", (50, 30), cv2.FONT_HERSHEY_SIMPLEX, 1,
-                   # (255, 255, 255))
-        #cv2.putText(thresh, f"Action: {action}", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 1,
-        #            (255, 255, 255))  # Draw the text
         cv2.imshow('ori', thresh) #mandar este frame para capturar el gesto en im
 
         # get the contours
@@ -150,47 +129,4 @@ while camera.isOpened():
         target = cv2.resize(target, (224, 224))
         target = target.reshape(1, 224, 224, 3)
         prediction, score = predict_rgb_image_vgg(target)
-    elif k == ord('t'):
-        print('Tracker turned on.')
-        cap = cv2.VideoCapture(0)
-        ret, frame = cap.read()
-
-        # Select Region of Interest (ROI)
-        r = cv2.selectROI(frame)
-
-        # Crop image
-        imCrop = frame[int(r[1]):int(r[1] + r[3]), int(r[0]):int(r[0] + r[2])]
-
-        # setup initial location of window
-        r, h, c, w = 250, 400, 400, 400
-        track_window = (c, r, w, h)
-        # set up the ROI for tracking
-        roi = imCrop
-        hsv_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(hsv_roi, np.array((0., 60., 32.)), np.array((180., 255., 255.)))
-        roi_hist = cv2.calcHist([hsv_roi], [0], mask, [180], [0, 180])
-        cv2.normalize(roi_hist, roi_hist, 0, 255, cv2.NORM_MINMAX)
-        # Setup the termination criteria, either 10 iteration or move by at least 1 pt
-        term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)
-        while (1):
-            ret, frame = cap.read()
-            if ret == True:
-                hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-                dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
-                # apply meanshift to get the new location
-                ret, track_window = cv2.CamShift(dst, track_window, term_crit)
-                # Draw it on image
-                pts = cv2.boxPoints(ret)
-                pts = np.int0(pts)
-                img2 = cv2.polylines(frame, [pts], True, (0, 255, 0), 2)
-                cv2.imshow('img2', img2)
-                k = cv2.waitKey(60) & 0xff
-                if k == 27:  # if ESC key
-                    break
-                else:
-                    #capturar imágen del frame
-                    cv2.imwrite(chr(k) + ".jpg", img2)
-            else:
-                break
-        cv2.destroyAllWindows()
-        cap.release()
+    

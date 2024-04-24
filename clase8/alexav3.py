@@ -53,14 +53,13 @@ class SpeechToText:
             self.__audio_player.play("No se pudo entender el audio, ¿puedes repetir por favor?")
         except sr.RequestError as e:
             print("Error al solicitar la transcripción; {0}".format(e))
-
         return None
 
 class SyntaxAnalyzer:
     def __init__(self):
         self.__grammar = nltk.CFG.fromstring("""
         O -> Sujeto Verbo Sustantivo
-        Sujeto -> "Alexa" | "alexa"
+        Sujeto -> "Jarvis" | "jarvis"
         Sustantivo -> YT | youtube
         Verbo -> "reproducir" | "reproduce"
         YT -> "youtube"
@@ -92,3 +91,8 @@ class SyntaxAnalyzer:
 if __name__ == "__main__":
     syntax_analyzer = SyntaxAnalyzer()
     syntax_analyzer.analyze_syntax()
+
+
+
+
+    
