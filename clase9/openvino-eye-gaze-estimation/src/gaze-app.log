@@ -1,0 +1,593 @@
+2023-05-24 19:28:28,866 [INFO] ============== Models Load time ===============
+2023-05-24 19:28:28,883 [ERROR] Error in inference:Path to the model models/intel/face-detection-adas-0001/FP32/face-detection-adas-0001.xml doesn't exist or it's a directory
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 121, in infer_on_stream
+    fdnet.load_model()
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 31, in load_model
+    self.infer_network.load_model(self.model_xml, self.device, self.extensions)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 60, in load_model
+    self.network = self.plugin.read_network(model=model_xml, weights=model_bin)
+  File "ie_api.pyx", line 367, in openvino.inference_engine.ie_api.IECore.read_network
+  File "ie_api.pyx", line 401, in openvino.inference_engine.ie_api.IECore.read_network
+Exception: Path to the model models/intel/face-detection-adas-0001/FP32/face-detection-adas-0001.xml doesn't exist or it's a directory
+2023-05-24 19:31:16,455 [INFO] ============== Models Load time ===============
+2023-05-24 19:31:17,561 [ERROR] Error in inference:'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'layers'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 121, in infer_on_stream
+    fdnet.load_model()
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 31, in load_model
+    self.infer_network.load_model(self.model_xml, self.device, self.extensions)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 66, in load_model
+    unsupported_layers = [l for l in self.network.layers.keys() if l not in supported_layers]
+AttributeError: 'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'layers'
+2023-05-24 19:47:03,530 [INFO] ============== Models Load time ===============
+2023-05-24 19:47:03,932 [ERROR] Error in inference:'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'inputs'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 121, in infer_on_stream
+    fdnet.load_model()
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 31, in load_model
+    self.infer_network.load_model(self.model_xml, self.device, self.extensions)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 76, in load_model
+    self.input_blob = next(iter(self.network.inputs))
+AttributeError: 'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'inputs'
+2023-05-24 19:49:22,035 [INFO] ============== Models Load time ===============
+2023-05-24 19:49:22,368 [INFO] Face Detection Model: 333.0ms
+2023-05-24 19:49:22,488 [INFO] Facial Landmarks Detection Model: 120.1ms
+2023-05-24 19:49:22,606 [INFO] Headpose Estimation Model: 117.2ms
+2023-05-24 19:49:22,752 [INFO] Gaze Estimation Model: 146.4ms
+2023-05-24 19:49:22,752 [INFO] ==============  End =====================
+2023-05-24 19:49:22,911 [ERROR] Error in inference:'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'inputs'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 165, in infer_on_stream
+    p_frame = fdnet.preprocess_input(frame)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 58, in preprocess_input
+    net_input_shape = self.infer_network.get_input_shape()
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 85, in get_input_shape
+    return self.network.inputs[self.input_blob].shape
+AttributeError: 'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'inputs'
+2023-05-24 19:49:37,139 [INFO] ============== Models Load time ===============
+2023-05-24 19:49:37,495 [INFO] Face Detection Model: 355.4ms
+2023-05-24 19:49:37,618 [INFO] Facial Landmarks Detection Model: 122.2ms
+2023-05-24 19:49:37,737 [INFO] Headpose Estimation Model: 119.6ms
+2023-05-24 19:49:37,890 [INFO] Gaze Estimation Model: 152.3ms
+2023-05-24 19:49:37,890 [INFO] ==============  End =====================
+2023-05-24 19:49:38,046 [ERROR] Error in inference:'openvino.inference_engine.ie_api.InputInfoPtr' object has no attribute 'shape'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 165, in infer_on_stream
+    p_frame = fdnet.preprocess_input(frame)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 58, in preprocess_input
+    net_input_shape = self.infer_network.get_input_shape()
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 85, in get_input_shape
+    return self.network.input_info[self.input_blob].shape
+AttributeError: 'openvino.inference_engine.ie_api.InputInfoPtr' object has no attribute 'shape'
+2023-05-24 19:51:13,731 [INFO] ============== Models Load time ===============
+2023-05-24 19:51:14,065 [INFO] Face Detection Model: 334.0ms
+2023-05-24 19:51:14,185 [INFO] Facial Landmarks Detection Model: 119.5ms
+2023-05-24 19:51:14,298 [INFO] Headpose Estimation Model: 113.1ms
+2023-05-24 19:51:14,442 [INFO] Gaze Estimation Model: 144.0ms
+2023-05-24 19:51:14,442 [INFO] ==============  End =====================
+2023-05-24 19:51:14,613 [ERROR] Error in inference:'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'inputs'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 167, in infer_on_stream
+    fnoutput = fdnet.predict(p_frame)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 39, in predict
+    self.infer_network.exec_net(image)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 96, in exec_net
+    inputiter = iter(self.network.inputs)
+AttributeError: 'openvino.inference_engine.ie_api.IENetwork' object has no attribute 'inputs'
+2023-05-24 19:51:40,852 [INFO] ============== Models Load time ===============
+2023-05-24 19:51:41,190 [INFO] Face Detection Model: 337.6ms
+2023-05-24 19:51:41,312 [INFO] Facial Landmarks Detection Model: 121.7ms
+2023-05-24 19:51:41,425 [INFO] Headpose Estimation Model: 112.7ms
+2023-05-24 19:51:41,570 [INFO] Gaze Estimation Model: 145.3ms
+2023-05-24 19:51:41,571 [INFO] ==============  End =====================
+2023-05-24 19:51:41,826 [ERROR] Error in inference:'openvino.inference_engine.ie_api.InferRequest' object has no attribute 'outputs'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 167, in infer_on_stream
+    fnoutput = fdnet.predict(p_frame)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 45, in predict
+    result = (self.infer_network.get_output())[self.infer_network.output_blob]
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/inference.py", line 123, in get_output
+    return self.exec_network.requests[0].outputs
+AttributeError: 'openvino.inference_engine.ie_api.InferRequest' object has no attribute 'outputs'
+2023-05-24 19:52:40,917 [INFO] ============== Models Load time ===============
+2023-05-24 19:52:41,246 [INFO] Face Detection Model: 328.4ms
+2023-05-24 19:52:41,361 [INFO] Facial Landmarks Detection Model: 114.8ms
+2023-05-24 19:52:41,475 [INFO] Headpose Estimation Model: 113.9ms
+2023-05-24 19:52:41,624 [INFO] Gaze Estimation Model: 149.1ms
+2023-05-24 19:52:41,624 [INFO] ==============  End =====================
+2023-05-24 19:52:41,871 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 169, in infer_on_stream
+    out_frame,fboxes = fdnet.preprocess_output(fnoutput,frame,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 79, in preprocess_output
+    for i in range(len(outputs[0][0])):
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-24 20:02:46,731 [INFO] ============== Models Load time ===============
+2023-05-24 20:02:47,064 [INFO] Face Detection Model: 333.2ms
+2023-05-24 20:02:47,179 [INFO] Facial Landmarks Detection Model: 114.5ms
+2023-05-24 20:02:47,292 [INFO] Headpose Estimation Model: 112.5ms
+2023-05-24 20:02:47,444 [INFO] Gaze Estimation Model: 151.9ms
+2023-05-24 20:02:47,448 [INFO] ==============  End =====================
+2023-05-24 20:02:47,726 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 169, in infer_on_stream
+    out_frame,fboxes = fdnet.preprocess_output(fnoutput,frame,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 79, in preprocess_output
+    for i in range(len(outputs[0][0])):
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-24 20:07:09,793 [INFO] ============== Models Load time ===============
+2023-05-24 20:07:10,146 [INFO] Face Detection Model: 352.9ms
+2023-05-24 20:07:10,266 [INFO] Facial Landmarks Detection Model: 118.8ms
+2023-05-24 20:07:10,382 [INFO] Headpose Estimation Model: 115.9ms
+2023-05-24 20:07:10,527 [INFO] Gaze Estimation Model: 145.5ms
+2023-05-24 20:07:10,528 [INFO] ==============  End =====================
+2023-05-24 20:15:16,080 [INFO] ============== Models Load time ===============
+2023-05-24 20:15:16,421 [INFO] Face Detection Model: 340.5ms
+2023-05-24 20:15:16,533 [INFO] Facial Landmarks Detection Model: 112.1ms
+2023-05-24 20:15:16,645 [INFO] Headpose Estimation Model: 112.1ms
+2023-05-24 20:15:16,792 [INFO] Gaze Estimation Model: 146.5ms
+2023-05-24 20:15:16,792 [INFO] ==============  End =====================
+2023-05-24 20:15:17,029 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 169, in infer_on_stream
+    out_frame,fboxes = fdnet.preprocess_output(fnoutput,frame,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/face_detection.py", line 79, in preprocess_output
+    for i in range(len(outputs[0][0])):
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-24 20:30:25,592 [INFO] ============== Models Load time ===============
+2023-05-24 20:30:25,956 [INFO] Face Detection Model: 363.2ms
+2023-05-24 20:30:26,073 [INFO] Facial Landmarks Detection Model: 116.5ms
+2023-05-24 20:30:26,188 [INFO] Headpose Estimation Model: 115.2ms
+2023-05-24 20:30:26,334 [INFO] Gaze Estimation Model: 145.4ms
+2023-05-24 20:30:26,334 [INFO] ==============  End =====================
+2023-05-24 20:41:07,791 [INFO] ============== Models Load time ===============
+2023-05-24 20:41:08,132 [INFO] Face Detection Model: 339.9ms
+2023-05-24 20:41:08,253 [INFO] Facial Landmarks Detection Model: 121.0ms
+2023-05-24 20:41:08,368 [INFO] Headpose Estimation Model: 114.7ms
+2023-05-24 20:41:08,514 [INFO] Gaze Estimation Model: 145.5ms
+2023-05-24 20:41:08,514 [INFO] ==============  End =====================
+2023-05-24 20:41:08,790 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object has no attribute 'reshape'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 183, in infer_on_stream
+    out_frame,left_eye_point,right_eye_point = lmnet.preprocess_output(lmoutput, fbox, out_frame,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/facial_landmarks_detection.py", line 88, in preprocess_output
+    normed_landmarks = outputs.reshape(1, 10)[0]
+AttributeError: 'openvino.inference_engine.ie_api.Blob' object has no attribute 'reshape'
+2023-05-24 20:46:29,743 [INFO] ============== Models Load time ===============
+2023-05-24 20:46:30,066 [INFO] Face Detection Model: 322.8ms
+2023-05-24 20:46:30,179 [INFO] Facial Landmarks Detection Model: 112.4ms
+2023-05-24 20:46:30,290 [INFO] Headpose Estimation Model: 110.8ms
+2023-05-24 20:46:30,440 [INFO] Gaze Estimation Model: 150.2ms
+2023-05-24 20:46:30,440 [INFO] ==============  End =====================
+2023-05-24 20:46:30,745 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 190, in infer_on_stream
+    out_frame, headpose_angels = hpnet.preprocess_output(hpoutput,out_frame, face,fbox,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/head_pose_estimation.py", line 82, in preprocess_output
+    yaw = outputs['angle_y_fc'][0][0]   # Axis of rotation: z
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-24 20:46:53,775 [INFO] ============== Models Load time ===============
+2023-05-24 20:46:54,123 [INFO] Face Detection Model: 346.8ms
+2023-05-24 20:46:54,245 [INFO] Facial Landmarks Detection Model: 122.3ms
+2023-05-24 20:46:54,358 [INFO] Headpose Estimation Model: 112.4ms
+2023-05-24 20:46:54,503 [INFO] Gaze Estimation Model: 144.8ms
+2023-05-24 20:46:54,503 [INFO] ==============  End =====================
+2023-05-24 20:46:54,791 [ERROR] Error in inference:'dict' object has no attribute 'buffer'
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 190, in infer_on_stream
+    out_frame, headpose_angels = hpnet.preprocess_output(hpoutput,out_frame, face,fbox,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/head_pose_estimation.py", line 82, in preprocess_output
+    yaw = outputs.buffer['angle_y_fc'][0][0]   # Axis of rotation: z
+AttributeError: 'dict' object has no attribute 'buffer'
+2023-05-24 20:51:56,357 [INFO] ============== Models Load time ===============
+2023-05-24 20:51:56,701 [INFO] Face Detection Model: 343.0ms
+2023-05-24 20:51:56,816 [INFO] Facial Landmarks Detection Model: 114.8ms
+2023-05-24 20:51:56,933 [INFO] Headpose Estimation Model: 116.1ms
+2023-05-24 20:51:57,083 [INFO] Gaze Estimation Model: 150.5ms
+2023-05-24 20:51:57,084 [INFO] ==============  End =====================
+2023-05-24 20:52:20,180 [INFO] ============== Models Load time ===============
+2023-05-24 20:52:20,372 [INFO] Face Detection Model: 192.2ms
+2023-05-24 20:52:20,471 [INFO] Facial Landmarks Detection Model: 98.7ms
+2023-05-24 20:52:20,578 [INFO] Headpose Estimation Model: 106.5ms
+2023-05-24 20:52:20,721 [INFO] Gaze Estimation Model: 143.0ms
+2023-05-24 20:52:20,721 [INFO] ==============  End =====================
+2023-05-24 20:53:26,657 [INFO] ============== Models Load time ===============
+2023-05-24 20:53:26,989 [INFO] Face Detection Model: 331.2ms
+2023-05-24 20:53:27,108 [INFO] Facial Landmarks Detection Model: 118.7ms
+2023-05-24 20:53:27,225 [INFO] Headpose Estimation Model: 116.8ms
+2023-05-24 20:53:27,371 [INFO] Gaze Estimation Model: 145.9ms
+2023-05-24 20:53:27,371 [INFO] ==============  End =====================
+2023-05-24 20:53:27,668 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 190, in infer_on_stream
+    out_frame, headpose_angels = hpnet.preprocess_output(hpoutput,out_frame, face,fbox,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/head_pose_estimation.py", line 82, in preprocess_output
+    yaw = outputs['angle_y_fc'][0][0]   # Axis of rotation: z
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-24 20:53:55,572 [INFO] ============== Models Load time ===============
+2023-05-24 20:53:55,901 [INFO] Face Detection Model: 328.9ms
+2023-05-24 20:53:56,014 [INFO] Facial Landmarks Detection Model: 113.2ms
+2023-05-24 20:53:56,127 [INFO] Headpose Estimation Model: 111.9ms
+2023-05-24 20:53:56,274 [INFO] Gaze Estimation Model: 147.3ms
+2023-05-24 20:53:56,274 [INFO] ==============  End =====================
+2023-05-24 20:53:56,570 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 190, in infer_on_stream
+    out_frame, headpose_angels = hpnet.preprocess_output(hpoutput,out_frame, face,fbox,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/head_pose_estimation.py", line 82, in preprocess_output
+    yaw = outputs['angle_y_fc'][0][0].buffer   # Axis of rotation: z
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-25 19:45:51,873 [INFO] ============== Models Load time ===============
+2023-05-25 19:45:52,841 [INFO] Face Detection Model: 967.6ms
+2023-05-25 19:45:52,953 [INFO] Facial Landmarks Detection Model: 111.0ms
+2023-05-25 19:45:53,067 [INFO] Headpose Estimation Model: 114.6ms
+2023-05-25 19:45:53,214 [INFO] Gaze Estimation Model: 145.9ms
+2023-05-25 19:45:53,214 [INFO] ==============  End =====================
+2023-05-25 19:47:20,082 [INFO] ============== Models Load time ===============
+2023-05-25 19:47:20,440 [INFO] Face Detection Model: 357.5ms
+2023-05-25 19:47:20,565 [INFO] Facial Landmarks Detection Model: 124.6ms
+2023-05-25 19:47:20,684 [INFO] Headpose Estimation Model: 119.3ms
+2023-05-25 19:47:20,830 [INFO] Gaze Estimation Model: 146.3ms
+2023-05-25 19:47:20,831 [INFO] ==============  End =====================
+2023-05-25 19:47:21,137 [ERROR] Error in inference:'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 197, in infer_on_stream
+    out_frame, gazevector = genet.preprocess_output(geoutput,out_frame,fbox, left_eye_point,right_eye_point,args.print)
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/gaze_estimation.py", line 143, in preprocess_output
+    x = outputs[0][0]
+TypeError: 'openvino.inference_engine.ie_api.Blob' object is not subscriptable
+2023-05-25 19:47:39,788 [INFO] ============== Models Load time ===============
+2023-05-25 19:47:39,967 [INFO] Face Detection Model: 178.6ms
+2023-05-25 19:47:40,062 [INFO] Facial Landmarks Detection Model: 94.6ms
+2023-05-25 19:47:40,166 [INFO] Headpose Estimation Model: 104.4ms
+2023-05-25 19:47:40,309 [INFO] Gaze Estimation Model: 142.2ms
+2023-05-25 19:47:40,309 [INFO] ==============  End =====================
+2023-05-25 19:49:30,160 [INFO] ============== Models Load time ===============
+2023-05-25 19:49:30,343 [INFO] Face Detection Model: 183.2ms
+2023-05-25 19:49:30,439 [INFO] Facial Landmarks Detection Model: 95.4ms
+2023-05-25 19:49:30,552 [INFO] Headpose Estimation Model: 113.5ms
+2023-05-25 19:49:30,700 [INFO] Gaze Estimation Model: 147.5ms
+2023-05-25 19:49:30,700 [INFO] ==============  End =====================
+2023-05-25 19:52:07,007 [INFO] ============== Models Inference time ===============
+2023-05-25 19:52:07,010 [INFO] Face Detection:25.7ms
+2023-05-25 19:52:07,010 [INFO] Facial Landmarks Detection:1.1ms
+2023-05-25 19:52:07,010 [INFO] Headpose Estimation:2.3ms
+2023-05-25 19:52:07,010 [INFO] Gaze Estimation:3.3ms
+2023-05-25 19:52:07,011 [INFO] ============== End ===============================
+2023-05-25 19:53:05,153 [INFO] ============== Models Load time ===============
+2023-05-25 19:53:05,481 [INFO] Face Detection Model: 327.7ms
+2023-05-25 19:53:05,594 [INFO] Facial Landmarks Detection Model: 112.5ms
+2023-05-25 19:53:05,708 [INFO] Headpose Estimation Model: 114.3ms
+2023-05-25 19:53:05,852 [INFO] Gaze Estimation Model: 143.8ms
+2023-05-25 19:53:05,852 [INFO] ==============  End =====================
+2023-05-25 19:55:14,066 [INFO] ============== Models Inference time ===============
+2023-05-25 19:55:14,067 [INFO] Face Detection:25.5ms
+2023-05-25 19:55:14,067 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 19:55:14,067 [INFO] Headpose Estimation:2.2ms
+2023-05-25 19:55:14,067 [INFO] Gaze Estimation:3.2ms
+2023-05-25 19:55:14,067 [INFO] ============== End ===============================
+2023-05-25 20:04:01,936 [INFO] ============== Models Load time ===============
+2023-05-25 20:04:02,279 [INFO] Face Detection Model: 342.2ms
+2023-05-25 20:04:02,398 [INFO] Facial Landmarks Detection Model: 118.9ms
+2023-05-25 20:04:02,512 [INFO] Headpose Estimation Model: 114.3ms
+2023-05-25 20:04:02,662 [INFO] Gaze Estimation Model: 149.3ms
+2023-05-25 20:04:02,662 [INFO] ==============  End =====================
+2023-05-25 20:06:09,305 [INFO] ============== Models Inference time ===============
+2023-05-25 20:06:09,306 [INFO] Face Detection:25.4ms
+2023-05-25 20:06:09,306 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 20:06:09,306 [INFO] Headpose Estimation:2.2ms
+2023-05-25 20:06:09,306 [INFO] Gaze Estimation:3.2ms
+2023-05-25 20:06:09,306 [INFO] ============== End ===============================
+2023-05-25 20:15:31,726 [INFO] ============== Models Load time ===============
+2023-05-25 20:15:32,078 [INFO] Face Detection Model: 351.0ms
+2023-05-25 20:15:32,194 [INFO] Facial Landmarks Detection Model: 116.1ms
+2023-05-25 20:15:32,310 [INFO] Headpose Estimation Model: 115.2ms
+2023-05-25 20:15:32,454 [INFO] Gaze Estimation Model: 144.0ms
+2023-05-25 20:15:32,454 [INFO] ==============  End =====================
+2023-05-25 20:27:20,473 [INFO] ============== Models Load time ===============
+2023-05-25 20:27:20,827 [INFO] Face Detection Model: 352.9ms
+2023-05-25 20:27:20,949 [INFO] Facial Landmarks Detection Model: 121.8ms
+2023-05-25 20:27:21,065 [INFO] Headpose Estimation Model: 116.3ms
+2023-05-25 20:27:21,213 [INFO] Gaze Estimation Model: 147.5ms
+2023-05-25 20:27:21,213 [INFO] ==============  End =====================
+2023-05-25 20:29:00,965 [INFO] ============== Models Load time ===============
+2023-05-25 20:29:01,285 [INFO] Face Detection Model: 319.0ms
+2023-05-25 20:29:01,395 [INFO] Facial Landmarks Detection Model: 110.5ms
+2023-05-25 20:29:01,509 [INFO] Headpose Estimation Model: 113.2ms
+2023-05-25 20:29:01,652 [INFO] Gaze Estimation Model: 142.8ms
+2023-05-25 20:29:01,652 [INFO] ==============  End =====================
+2023-05-25 20:35:33,510 [INFO] ============== Models Load time ===============
+2023-05-25 20:35:33,855 [INFO] Face Detection Model: 343.9ms
+2023-05-25 20:35:33,971 [INFO] Facial Landmarks Detection Model: 115.2ms
+2023-05-25 20:35:34,082 [INFO] Headpose Estimation Model: 111.5ms
+2023-05-25 20:35:34,226 [INFO] Gaze Estimation Model: 144.0ms
+2023-05-25 20:35:34,227 [INFO] ==============  End =====================
+2023-05-25 20:38:38,291 [ERROR] Error in inference:can only concatenate str (not "int") to str
+Traceback (most recent call last):
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/main.py", line 203, in infer_on_stream
+    mc.move(gazevector[0],gazevector[1])
+  File "/Users/ebenitez/Desktop/MSICU_INU_Eye_Tracking/openvino-eye-gaze-estimation/src/mouse_controller.py", line 34, in move
+    print('mx:'+ mx + 'my:'+my)
+TypeError: can only concatenate str (not "int") to str
+2023-05-25 20:40:26,784 [INFO] ============== Models Load time ===============
+2023-05-25 20:40:27,129 [INFO] Face Detection Model: 344.9ms
+2023-05-25 20:40:27,242 [INFO] Facial Landmarks Detection Model: 112.2ms
+2023-05-25 20:40:27,358 [INFO] Headpose Estimation Model: 115.4ms
+2023-05-25 20:40:27,503 [INFO] Gaze Estimation Model: 145.8ms
+2023-05-25 20:40:27,504 [INFO] ==============  End =====================
+2023-05-25 20:42:32,248 [INFO] ============== Models Inference time ===============
+2023-05-25 20:42:32,249 [INFO] Face Detection:26.0ms
+2023-05-25 20:42:32,249 [INFO] Facial Landmarks Detection:1.1ms
+2023-05-25 20:42:32,249 [INFO] Headpose Estimation:2.3ms
+2023-05-25 20:42:32,250 [INFO] Gaze Estimation:3.4ms
+2023-05-25 20:42:32,250 [INFO] ============== End ===============================
+2023-05-25 21:11:39,264 [INFO] ============== Models Load time ===============
+2023-05-25 21:11:39,623 [INFO] Face Detection Model: 356.9ms
+2023-05-25 21:11:39,743 [INFO] Facial Landmarks Detection Model: 120.3ms
+2023-05-25 21:11:39,858 [INFO] Headpose Estimation Model: 114.3ms
+2023-05-25 21:11:40,001 [INFO] Gaze Estimation Model: 143.2ms
+2023-05-25 21:11:40,001 [INFO] ==============  End =====================
+2023-05-25 21:13:49,849 [INFO] ============== Models Inference time ===============
+2023-05-25 21:13:49,850 [INFO] Face Detection:25.6ms
+2023-05-25 21:13:49,850 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 21:13:49,850 [INFO] Headpose Estimation:2.2ms
+2023-05-25 21:13:49,850 [INFO] Gaze Estimation:3.2ms
+2023-05-25 21:13:49,850 [INFO] ============== End ===============================
+2023-05-25 21:24:52,960 [INFO] ============== Models Load time ===============
+2023-05-25 21:24:53,321 [INFO] Face Detection Model: 360.6ms
+2023-05-25 21:24:53,430 [INFO] Facial Landmarks Detection Model: 108.4ms
+2023-05-25 21:24:53,549 [INFO] Headpose Estimation Model: 118.9ms
+2023-05-25 21:24:53,694 [INFO] Gaze Estimation Model: 145.1ms
+2023-05-25 21:24:53,694 [INFO] ==============  End =====================
+2023-05-25 21:25:57,774 [INFO] ============== Models Inference time ===============
+2023-05-25 21:25:57,775 [INFO] Face Detection:25.3ms
+2023-05-25 21:25:57,775 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 21:25:57,775 [INFO] Headpose Estimation:2.2ms
+2023-05-25 21:25:57,775 [INFO] Gaze Estimation:3.2ms
+2023-05-25 21:25:57,775 [INFO] ============== End ===============================
+2023-05-25 21:26:58,332 [INFO] ============== Models Load time ===============
+2023-05-25 21:26:58,638 [INFO] Face Detection Model: 304.5ms
+2023-05-25 21:26:58,748 [INFO] Facial Landmarks Detection Model: 110.4ms
+2023-05-25 21:26:58,862 [INFO] Headpose Estimation Model: 113.2ms
+2023-05-25 21:26:59,006 [INFO] Gaze Estimation Model: 144.2ms
+2023-05-25 21:26:59,006 [INFO] ==============  End =====================
+2023-05-25 21:28:41,511 [INFO] ============== Models Load time ===============
+2023-05-25 21:28:41,798 [INFO] Face Detection Model: 286.3ms
+2023-05-25 21:28:41,906 [INFO] Facial Landmarks Detection Model: 107.9ms
+2023-05-25 21:28:42,019 [INFO] Headpose Estimation Model: 112.2ms
+2023-05-25 21:28:42,164 [INFO] Gaze Estimation Model: 145.3ms
+2023-05-25 21:28:42,165 [INFO] ==============  End =====================
+2023-05-25 21:29:45,851 [INFO] ============== Models Inference time ===============
+2023-05-25 21:29:45,852 [INFO] Face Detection:25.1ms
+2023-05-25 21:29:45,852 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 21:29:45,852 [INFO] Headpose Estimation:2.2ms
+2023-05-25 21:29:45,852 [INFO] Gaze Estimation:3.2ms
+2023-05-25 21:29:45,852 [INFO] ============== End ===============================
+2023-05-25 21:48:33,769 [INFO] ============== Models Load time ===============
+2023-05-25 21:48:34,062 [INFO] Face Detection Model: 292.5ms
+2023-05-25 21:48:34,175 [INFO] Facial Landmarks Detection Model: 113.0ms
+2023-05-25 21:48:34,289 [INFO] Headpose Estimation Model: 112.8ms
+2023-05-25 21:48:34,432 [INFO] Gaze Estimation Model: 143.5ms
+2023-05-25 21:48:34,432 [INFO] ==============  End =====================
+2023-05-25 21:49:38,696 [INFO] ============== Models Inference time ===============
+2023-05-25 21:49:38,696 [INFO] Face Detection:25.5ms
+2023-05-25 21:49:38,696 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 21:49:38,696 [INFO] Headpose Estimation:2.2ms
+2023-05-25 21:49:38,696 [INFO] Gaze Estimation:3.2ms
+2023-05-25 21:49:38,696 [INFO] ============== End ===============================
+2023-05-25 21:54:01,121 [INFO] ============== Models Load time ===============
+2023-05-25 21:54:01,458 [INFO] Face Detection Model: 336.6ms
+2023-05-25 21:54:01,574 [INFO] Facial Landmarks Detection Model: 115.3ms
+2023-05-25 21:54:01,687 [INFO] Headpose Estimation Model: 112.7ms
+2023-05-25 21:54:01,831 [INFO] Gaze Estimation Model: 144.6ms
+2023-05-25 21:54:01,832 [INFO] ==============  End =====================
+2023-05-25 21:56:49,952 [INFO] ============== Models Inference time ===============
+2023-05-25 21:56:49,953 [INFO] Face Detection:26.3ms
+2023-05-25 21:56:49,953 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 21:56:49,953 [INFO] Headpose Estimation:2.1ms
+2023-05-25 21:56:49,953 [INFO] Gaze Estimation:3.1ms
+2023-05-25 21:56:49,953 [INFO] ============== End ===============================
+2023-05-25 22:14:27,494 [INFO] ============== Models Load time ===============
+2023-05-25 22:14:27,896 [INFO] Face Detection Model: 401.6ms
+2023-05-25 22:14:28,019 [INFO] Facial Landmarks Detection Model: 122.7ms
+2023-05-25 22:14:28,132 [INFO] Headpose Estimation Model: 112.5ms
+2023-05-25 22:14:28,277 [INFO] Gaze Estimation Model: 145.7ms
+2023-05-25 22:14:28,278 [INFO] ==============  End =====================
+2023-05-25 22:17:14,521 [INFO] ============== Models Inference time ===============
+2023-05-25 22:17:14,521 [INFO] Face Detection:25.5ms
+2023-05-25 22:17:14,522 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-25 22:17:14,522 [INFO] Headpose Estimation:2.1ms
+2023-05-25 22:17:14,522 [INFO] Gaze Estimation:3.2ms
+2023-05-25 22:17:14,522 [INFO] ============== End ===============================
+2023-05-25 23:56:23,596 [INFO] ============== Models Load time ===============
+2023-05-25 23:56:23,951 [INFO] Face Detection Model: 354.4ms
+2023-05-25 23:56:24,071 [INFO] Facial Landmarks Detection Model: 120.4ms
+2023-05-25 23:56:24,191 [INFO] Headpose Estimation Model: 118.9ms
+2023-05-25 23:56:24,336 [INFO] Gaze Estimation Model: 145.7ms
+2023-05-25 23:56:24,337 [INFO] ==============  End =====================
+2023-05-26 00:01:33,973 [INFO] ============== Models Load time ===============
+2023-05-26 00:01:34,324 [INFO] Face Detection Model: 349.8ms
+2023-05-26 00:01:34,440 [INFO] Facial Landmarks Detection Model: 115.7ms
+2023-05-26 00:01:34,553 [INFO] Headpose Estimation Model: 112.6ms
+2023-05-26 00:01:34,734 [INFO] Gaze Estimation Model: 181.6ms
+2023-05-26 00:01:34,734 [INFO] ==============  End =====================
+2023-05-26 00:02:35,859 [INFO] ============== Models Load time ===============
+2023-05-26 00:02:36,183 [INFO] Face Detection Model: 323.3ms
+2023-05-26 00:02:36,294 [INFO] Facial Landmarks Detection Model: 111.1ms
+2023-05-26 00:02:36,412 [INFO] Headpose Estimation Model: 117.1ms
+2023-05-26 00:02:36,559 [INFO] Gaze Estimation Model: 147.6ms
+2023-05-26 00:02:36,560 [INFO] ==============  End =====================
+2023-05-26 00:04:26,920 [INFO] ============== Models Load time ===============
+2023-05-26 00:04:27,221 [INFO] Face Detection Model: 300.4ms
+2023-05-26 00:04:27,331 [INFO] Facial Landmarks Detection Model: 109.2ms
+2023-05-26 00:04:27,444 [INFO] Headpose Estimation Model: 113.1ms
+2023-05-26 00:04:27,591 [INFO] Gaze Estimation Model: 146.5ms
+2023-05-26 00:04:27,591 [INFO] ==============  End =====================
+2023-05-26 00:07:13,722 [INFO] ============== Models Inference time ===============
+2023-05-26 00:07:13,723 [INFO] Face Detection:25.6ms
+2023-05-26 00:07:13,723 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-26 00:07:13,723 [INFO] Headpose Estimation:2.1ms
+2023-05-26 00:07:13,723 [INFO] Gaze Estimation:3.2ms
+2023-05-26 00:07:13,723 [INFO] ============== End ===============================
+2023-05-26 00:30:51,676 [INFO] ============== Models Load time ===============
+2023-05-26 00:30:52,011 [INFO] Face Detection Model: 334.0ms
+2023-05-26 00:30:52,128 [INFO] Facial Landmarks Detection Model: 116.9ms
+2023-05-26 00:30:52,242 [INFO] Headpose Estimation Model: 113.9ms
+2023-05-26 00:30:52,388 [INFO] Gaze Estimation Model: 145.8ms
+2023-05-26 00:30:52,389 [INFO] ==============  End =====================
+2023-05-26 00:33:43,291 [INFO] ============== Models Load time ===============
+2023-05-26 00:33:43,617 [INFO] Face Detection Model: 325.5ms
+2023-05-26 00:33:43,725 [INFO] Facial Landmarks Detection Model: 106.9ms
+2023-05-26 00:33:43,839 [INFO] Headpose Estimation Model: 114.4ms
+2023-05-26 00:33:43,988 [INFO] Gaze Estimation Model: 148.5ms
+2023-05-26 00:33:43,988 [INFO] ==============  End =====================
+2023-05-26 00:34:48,250 [INFO] ============== Models Inference time ===============
+2023-05-26 00:34:48,250 [INFO] Face Detection:25.2ms
+2023-05-26 00:34:48,250 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-26 00:34:48,250 [INFO] Headpose Estimation:2.2ms
+2023-05-26 00:34:48,250 [INFO] Gaze Estimation:3.2ms
+2023-05-26 00:34:48,250 [INFO] ============== End ===============================
+2023-05-26 09:53:19,449 [INFO] ============== Models Load time ===============
+2023-05-26 09:53:19,790 [INFO] Face Detection Model: 340.0ms
+2023-05-26 09:53:19,904 [INFO] Facial Landmarks Detection Model: 113.4ms
+2023-05-26 09:53:20,016 [INFO] Headpose Estimation Model: 112.5ms
+2023-05-26 09:53:20,161 [INFO] Gaze Estimation Model: 144.6ms
+2023-05-26 09:53:20,161 [INFO] ==============  End =====================
+2023-05-26 09:54:23,796 [INFO] ============== Models Inference time ===============
+2023-05-26 09:54:23,796 [INFO] Face Detection:25.1ms
+2023-05-26 09:54:23,796 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-26 09:54:23,796 [INFO] Headpose Estimation:2.2ms
+2023-05-26 09:54:23,796 [INFO] Gaze Estimation:3.2ms
+2023-05-26 09:54:23,796 [INFO] ============== End ===============================
+2023-05-26 09:56:40,885 [INFO] ============== Models Load time ===============
+2023-05-26 09:56:41,202 [INFO] Face Detection Model: 316.4ms
+2023-05-26 09:56:41,312 [INFO] Facial Landmarks Detection Model: 110.3ms
+2023-05-26 09:56:41,425 [INFO] Headpose Estimation Model: 112.7ms
+2023-05-26 09:56:41,569 [INFO] Gaze Estimation Model: 143.7ms
+2023-05-26 09:56:41,569 [INFO] ==============  End =====================
+2023-05-26 09:57:45,440 [INFO] ============== Models Inference time ===============
+2023-05-26 09:57:45,441 [INFO] Face Detection:25.4ms
+2023-05-26 09:57:45,441 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-26 09:57:45,441 [INFO] Headpose Estimation:2.2ms
+2023-05-26 09:57:45,441 [INFO] Gaze Estimation:3.2ms
+2023-05-26 09:57:45,441 [INFO] ============== End ===============================
+2023-05-26 09:57:49,760 [INFO] ============== Models Load time ===============
+2023-05-26 09:57:49,943 [INFO] Face Detection Model: 183.0ms
+2023-05-26 09:57:50,038 [INFO] Facial Landmarks Detection Model: 94.7ms
+2023-05-26 09:57:50,144 [INFO] Headpose Estimation Model: 105.8ms
+2023-05-26 09:57:50,289 [INFO] Gaze Estimation Model: 144.5ms
+2023-05-26 09:57:50,289 [INFO] ==============  End =====================
+2023-05-26 09:58:53,947 [INFO] ============== Models Inference time ===============
+2023-05-26 09:58:53,947 [INFO] Face Detection:25.1ms
+2023-05-26 09:58:53,947 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-26 09:58:53,947 [INFO] Headpose Estimation:2.2ms
+2023-05-26 09:58:53,947 [INFO] Gaze Estimation:3.2ms
+2023-05-26 09:58:53,947 [INFO] ============== End ===============================
+2023-05-26 10:10:17,372 [INFO] ============== Models Load time ===============
+2023-05-26 10:10:17,678 [INFO] Face Detection Model: 306.0ms
+2023-05-26 10:10:17,791 [INFO] Facial Landmarks Detection Model: 112.8ms
+2023-05-26 10:10:17,907 [INFO] Headpose Estimation Model: 115.4ms
+2023-05-26 10:10:18,053 [INFO] Gaze Estimation Model: 146.5ms
+2023-05-26 10:10:18,054 [INFO] ==============  End =====================
+2023-05-26 10:11:22,005 [INFO] ============== Models Inference time ===============
+2023-05-26 10:11:22,005 [INFO] Face Detection:24.9ms
+2023-05-26 10:11:22,005 [INFO] Facial Landmarks Detection:1.0ms
+2023-05-26 10:11:22,005 [INFO] Headpose Estimation:2.2ms
+2023-05-26 10:11:22,005 [INFO] Gaze Estimation:3.1ms
+2023-05-26 10:11:22,005 [INFO] ============== End ===============================
+2024-05-02 12:35:05,389 [INFO] ============== Models Load time ===============
+2024-05-02 12:35:05,736 [INFO] Face Detection Model: 346.5ms
+2024-05-02 12:35:05,948 [INFO] Facial Landmarks Detection Model: 212.2ms
+2024-05-02 12:35:06,207 [INFO] Headpose Estimation Model: 243.4ms
+2024-05-02 12:35:06,809 [INFO] Gaze Estimation Model: 602.0ms
+2024-05-02 12:35:06,810 [INFO] ==============  End =====================
+2024-05-02 12:59:35,148 [INFO] ============== Models Load time ===============
+2024-05-02 12:59:35,535 [ERROR] Error in inference:'list' object is not callable
+Traceback (most recent call last):
+  File "C:\Users\zS22000728\Documents\InterfacesNaturalesDeUsuario\clase9\openvino-eye-gaze-estimation\src\main.py", line 121, in infer_on_stream
+    fdnet.load_model()
+  File "C:\Users\zS22000728\Documents\InterfacesNaturalesDeUsuario\clase9\openvino-eye-gaze-estimation\src\face_detection.py", line 31, in load_model
+    self.infer_network.load_model(self.model_xml, self.device, self.extensions)
+  File "C:\Users\zS22000728\Documents\InterfacesNaturalesDeUsuario\clase9\openvino-eye-gaze-estimation\src\inference.py", line 76, in load_model
+    self.input_blob = self.exec_network.inputs(0)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'list' object is not callable
+2024-05-02 13:00:17,494 [INFO] ============== Models Load time ===============
+2024-05-02 13:00:17,817 [INFO] Face Detection Model: 323.1ms
+2024-05-02 13:00:18,028 [INFO] Facial Landmarks Detection Model: 210.6ms
+2024-05-02 13:00:18,384 [INFO] Headpose Estimation Model: 356.6ms
+2024-05-02 13:00:18,758 [INFO] Gaze Estimation Model: 374.1ms
+2024-05-02 13:00:18,758 [INFO] ==============  End =====================
+2024-05-14 10:37:51,319 [INFO] ============== Models Load time ===============
+2024-05-14 10:37:52,112 [INFO] Face Detection Model: 792.9ms
+2024-05-14 10:37:52,430 [INFO] Facial Landmarks Detection Model: 317.2ms
+2024-05-14 10:37:52,732 [INFO] Headpose Estimation Model: 301.1ms
+2024-05-14 10:37:53,120 [INFO] Gaze Estimation Model: 386.4ms
+2024-05-14 10:37:53,121 [INFO] ==============  End =====================
+2024-05-21 10:45:03,297 [INFO] ============== Models Load time ===============
+2024-05-21 10:45:04,724 [INFO] Face Detection Model: 1427.4ms
+2024-05-21 10:45:05,074 [INFO] Facial Landmarks Detection Model: 350.1ms
+2024-05-21 10:45:05,472 [INFO] Headpose Estimation Model: 397.7ms
+2024-05-21 10:45:05,932 [INFO] Gaze Estimation Model: 459.7ms
+2024-05-21 10:45:05,932 [INFO] ==============  End =====================
+2024-05-21 10:47:00,851 [INFO] ============== Models Inference time ===============
+2024-05-21 10:47:00,851 [INFO] Face Detection:93.4ms
+2024-05-21 10:47:00,851 [INFO] Facial Landmarks Detection:0.7ms
+2024-05-21 10:47:00,851 [INFO] Headpose Estimation:3.4ms
+2024-05-21 10:47:00,851 [INFO] Gaze Estimation:2.9ms
+2024-05-21 10:47:00,851 [INFO] ============== End ===============================
+2024-05-21 10:47:35,223 [INFO] ============== Models Load time ===============
+2024-05-21 10:47:35,524 [INFO] Face Detection Model: 300.4ms
+2024-05-21 10:47:35,719 [INFO] Facial Landmarks Detection Model: 195.4ms
+2024-05-21 10:47:35,938 [INFO] Headpose Estimation Model: 218.7ms
+2024-05-21 10:47:36,278 [INFO] Gaze Estimation Model: 340.8ms
+2024-05-21 10:47:36,278 [INFO] ==============  End =====================
+2024-05-21 10:49:04,193 [INFO] ============== Models Inference time ===============
+2024-05-21 10:49:04,193 [INFO] Face Detection:101.4ms
+2024-05-21 10:49:04,193 [INFO] Facial Landmarks Detection:0.7ms
+2024-05-21 10:49:04,193 [INFO] Headpose Estimation:3.0ms
+2024-05-21 10:49:04,193 [INFO] Gaze Estimation:1.8ms
+2024-05-21 10:49:04,193 [INFO] ============== End ===============================
+2024-05-21 10:49:19,817 [INFO] ============== Models Load time ===============
+2024-05-21 10:49:20,109 [INFO] Face Detection Model: 291.9ms
+2024-05-21 10:49:20,312 [INFO] Facial Landmarks Detection Model: 203.4ms
+2024-05-21 10:49:20,539 [INFO] Headpose Estimation Model: 227.3ms
+2024-05-21 10:49:20,870 [INFO] Gaze Estimation Model: 330.6ms
+2024-05-21 10:49:20,870 [INFO] ==============  End =====================
+2024-05-21 10:50:41,532 [INFO] ============== Models Inference time ===============
+2024-05-21 10:50:41,532 [INFO] Face Detection:98.6ms
+2024-05-21 10:50:41,532 [INFO] Facial Landmarks Detection:0.8ms
+2024-05-21 10:50:41,532 [INFO] Headpose Estimation:3.2ms
+2024-05-21 10:50:41,532 [INFO] Gaze Estimation:1.4ms
+2024-05-21 10:50:41,532 [INFO] ============== End ===============================
+2024-05-21 10:50:56,660 [INFO] ============== Models Load time ===============
+2024-05-21 10:50:56,968 [INFO] Face Detection Model: 307.8ms
+2024-05-21 10:50:57,149 [INFO] Facial Landmarks Detection Model: 180.8ms
+2024-05-21 10:50:57,550 [INFO] Headpose Estimation Model: 401.0ms
+2024-05-21 10:50:57,888 [INFO] Gaze Estimation Model: 337.8ms
+2024-05-21 10:50:57,888 [INFO] ==============  End =====================
+2024-05-21 10:51:13,813 [INFO] ============== Models Load time ===============
+2024-05-21 10:51:14,112 [INFO] Face Detection Model: 299.1ms
+2024-05-21 10:51:14,324 [INFO] Facial Landmarks Detection Model: 211.9ms
+2024-05-21 10:51:14,538 [INFO] Headpose Estimation Model: 213.8ms
+2024-05-21 10:51:14,910 [INFO] Gaze Estimation Model: 372.2ms
+2024-05-21 10:51:14,910 [INFO] ==============  End =====================
+2024-05-21 10:51:23,105 [INFO] ============== Models Load time ===============
+2024-05-21 10:51:23,410 [INFO] Face Detection Model: 305.0ms
+2024-05-21 10:51:23,615 [INFO] Facial Landmarks Detection Model: 205.0ms
+2024-05-21 10:51:23,842 [INFO] Headpose Estimation Model: 226.5ms
+2024-05-21 10:51:24,173 [INFO] Gaze Estimation Model: 331.3ms
+2024-05-21 10:51:24,173 [INFO] ==============  End =====================
+2024-05-21 10:54:12,363 [INFO] ============== Models Load time ===============
+2024-05-21 10:54:12,662 [INFO] Face Detection Model: 298.8ms
+2024-05-21 10:54:12,892 [INFO] Facial Landmarks Detection Model: 229.7ms
+2024-05-21 10:54:13,119 [INFO] Headpose Estimation Model: 227.6ms
+2024-05-21 10:54:13,443 [INFO] Gaze Estimation Model: 323.7ms
+2024-05-21 10:54:13,443 [INFO] ==============  End =====================
+2024-05-21 10:54:43,685 [INFO] ============== Models Load time ===============
+2024-05-21 10:54:43,984 [INFO] Face Detection Model: 283.8ms
+2024-05-21 10:54:44,189 [INFO] Facial Landmarks Detection Model: 204.9ms
+2024-05-21 10:54:44,410 [INFO] Headpose Estimation Model: 221.1ms
+2024-05-21 10:54:44,778 [INFO] Gaze Estimation Model: 368.0ms
+2024-05-21 10:54:44,778 [INFO] ==============  End =====================

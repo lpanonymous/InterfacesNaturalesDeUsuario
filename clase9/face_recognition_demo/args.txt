@@ -1,0 +1,8 @@
+
+
+-i media/input_video.mp4 
+-m_fd models/intel/face-detection-retail-0004/FP32/face-detection-retail-0004.xml
+-m_lm models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml
+-m_reid models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml
+--verbose
+-fg "gallery"
