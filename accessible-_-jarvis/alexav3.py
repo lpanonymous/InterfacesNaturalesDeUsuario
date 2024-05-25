@@ -4,6 +4,9 @@ import nltk
 import pygame
 from gtts import gTTS
 import os
+import subprocess
+import pyautogui
+import time
 
 class AudioPlayer:
     def __init__(self):
@@ -59,10 +62,10 @@ class SyntaxAnalyzer:
     def __init__(self):
         self.__grammar = nltk.CFG.fromstring("""
         O -> Sujeto Verbo Sustantivo
-        Sujeto -> "Jarvis" | "jarvis"
-        Sustantivo -> YT | youtube
-        Verbo -> "reproducir" | "reproduce"
-        YT -> "youtube"
+        Sujeto -> "jarvis"
+        Verbo -> "abre" | "abrir" | "inicia" | "inicializa" | "pon" | "iniciar"
+        Artículo -> 
+        Sustantivo -> "youtube" | "google" | "explorador" | "word" | "excel" | "powerpoint"
         """)
         self.__speech_to_text = SpeechToText()
         self.__audio_player = AudioPlayer()
@@ -75,11 +78,30 @@ class SyntaxAnalyzer:
             if self.__text:
                 tokens = self.__text.split()
                 for tree in rd_parser.parse(tokens):
-                    print(tree)
-                    tree.pretty_print()
-                    self.__audio_player.play("¿Qué video deseas reproducir?")
-                    self.__text = self.__speech_to_text.transcribe_audio()
-                    pywhatkit.playonyt(self.__text)
+                    # Recorrer el árbol de análisis sintáctico
+                    for subtree in tree.subtrees():
+                        if subtree.label() == 'Sustantivo':  # Buscar el nodo Sustantivo
+                            sustantivo_value = subtree[0]  # Extraer el valor del sustantivo
+                            print("Sustantivo:", sustantivo_value)  # Imprimir el sustantivo
+                            if sustantivo_value == "youtube":
+                                self.__audio_player.play("¿Qué video deseas reproducir?")
+                                self.__text = self.__speech_to_text.transcribe_audio()
+                                pywhatkit.playonyt(self.__text)
+                            elif sustantivo_value == "google":
+                                subprocess.Popen("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
+                                self.__audio_player.play("Google se ha abierto")
+                            elif sustantivo_value == "explorador":
+                                os.system("explorer")
+                                self.__audio_player.play("El explorador de archivos se ha abierto")
+                            elif sustantivo_value == "word":
+                                subprocess.Popen("C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.exe")
+                                self.__audio_player.play("Word se ha abierto")
+                            elif sustantivo_value == "excel":
+                                subprocess.Popen("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.exe")
+                                self.__audio_player.play("Excel se ha abierto")
+                            elif sustantivo_value == "powerpoint":
+                                subprocess.Popen("C:\\Program Files\\Microsoft Office\\root\\Office16\\POWERPNT.exe")
+                                self.__audio_player.play("PowerPoint se ha abierto")
         except ValueError:
             print("No se reconoce como oración del lenguaje")
         except sr.UnknownValueError:

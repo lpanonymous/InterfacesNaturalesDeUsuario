@@ -87,6 +87,6 @@ while camera.isOpened():
         target = np.stack((thresh,) * 3, axis=-1)
         target = cv2.resize(target, (224, 224))
         target = target.reshape(1, 224, 224, 3)
-        cv2.imwrite(f"C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase7/silhouettes/G_{str(i).zfill(3)}.jpg", thresh)
+        cv2.imwrite(f"C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/accessible-_-jarvis/silhouettes/V_{str(i).zfill(3)}.jpg", thresh)
         i+=1
 
