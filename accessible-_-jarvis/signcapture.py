@@ -6,7 +6,7 @@ import time
 action = ''
 score = 0
 img_counter = 500
-i=0
+i=50
 
 # Turn on/off the ability to save images
 save_images, selected_gesture = True, 'peace'

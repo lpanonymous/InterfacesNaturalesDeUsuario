@@ -6,16 +6,22 @@ from keras.layers import Dropout
 from keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 
-gestures = {'A': 'a',
-           'B': 'b',
+gestures = {'G': 'g',
+           'E': 'e',
+           'W': 'w',
            'C': 'c',
-           'D': 'd'
+           'P': 'p',
+           'M': 'm',
+           'V': 'v'
             }
 
-gestures_map = {'a': 0,
-                'b': 1,
-                'c': 2,
-                'd': 3
+gestures_map = {'g': 0,
+                'e': 1,
+                'w': 2,
+                'c': 3,
+                'p': 4,
+                'm': 5,
+                'v': 6,
                 }
 
 
@@ -64,14 +70,14 @@ class Data(object):
         return self.X_data, self.y_data
 
 
-relative_path = 'C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/silhouettesv2'
+relative_path = 'C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/accessible-_-jarvis/silhouettes'
 rgb = False
 
 X_data, y_data = walk_file_tree(relative_path)
 X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=12, stratify=y_data)
 
 model = models.Sequential()
-model.add(layers.Conv2D(32, (4, 4), strides=(2, 2), activation='relu', input_shape=(224, 224, 3)))
+model.add(layers.Conv2D(32, (7, 7), strides=(2, 2), activation='relu', input_shape=(224, 224, 3)))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
@@ -82,7 +88,7 @@ model.add(layers.Dense(128, activation='relu'))
 model.add(layers.Dense(128, activation='relu'))
 model.add(layers.Dense(128, activation='relu'))
 model.add(Dropout(0.25, seed=21))
-model.add(layers.Dense(4, activation='softmax'))
+model.add(layers.Dense(7, activation='softmax'))
 
 model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy'])
 model.fit(X_train, y_train, epochs=4, batch_size=64, validation_data=(X_test, y_test), verbose=1)
@@ -96,7 +102,7 @@ print('Accuracy: %.2f' % (accuracy*100))
 #for i in range(5):
 #    print('{} (expected {})'.format(predictions[i], y_data[i]))
 
-file_path = 'C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/clase6/signrecognitionv2/saved_model.hdf5'
+file_path = 'C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/accessible-_-jarvis/saved_model.hdf5'
 # Guardar el Modelo
 model.save(file_path)
 
@@ -105,10 +111,13 @@ model.save(file_path)
 from keras.models import load_model
 loaded_model = load_model(file_path)
 
-gesture_names = {0: 'a',
-                 1: 'b',
-                 2: 'c',
-                 3: 'd'}
+gesture_names = {0: 'google',
+                 1: 'explorador',
+                 2: 'word',
+                 3: 'excel',
+                 4: 'powerpoint',
+                 5: 'volumeup',
+                 6: 'volumenlow'}
 
 for i in range(len(X_data)):
     pred_array = loaded_model.predict(X_data[i].reshape(1, 224, 224, 3))
