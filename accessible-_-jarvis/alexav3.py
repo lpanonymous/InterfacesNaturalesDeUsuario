@@ -5,8 +5,6 @@ import pygame
 from gtts import gTTS
 import os
 import subprocess
-import pyautogui
-import time
 
 class AudioPlayer:
     def __init__(self):

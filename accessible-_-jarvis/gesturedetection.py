@@ -3,12 +3,11 @@ import cv2
 import numpy as np
 from keras.models import load_model
 import time
-from alexav3 import SyntaxAnalyzer, AudioPlayer
-import pywhatkit
-from datetime import datetime
 import subprocess
-import pygame
 import time
+import pyautogui
+import os
+from alexav3 import SyntaxAnalyzer
 
 
 # General Settings
@@ -22,9 +21,9 @@ gesture_names = {0: 'google',
                  3: 'excel',
                  4: 'powerpoint',
                  5: 'volumeup',
-                 6: 'volumelow'}
+                 6: 'volumedown'}
 
-model = load_model('C:/Users/zS22000728/Documents/InterfacesNaturalesDeUsuario/accessible-_-jarvis/saved_model.hdf5')
+model = load_model('C:/Users/zS22000728/Documents/VS/InterfacesNaturalesDeUsuario/accessible-_-jarvis/saved_model.hdf5')
 
 def predict_rgb_image_vgg(image):
     image = np.array(image, dtype='float32')
@@ -38,29 +37,18 @@ def predict_rgb_image_vgg(image):
     print(result)
     if result == 'google':
         subprocess.Popen("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
-        audio_player = AudioPlayer()
-        audio_player.play("Google se ha abierto") 
+    elif result == 'explorador':
+        os.system("explorer")
     elif result == 'word':
-        audio_player = AudioPlayer()
-        audio_player.play("Word se ha abierto")
         subprocess.Popen("C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.exe")
     elif result == 'excel':
-        audio_player = AudioPlayer()
-        audio_player.play("Excel se ha abierto")
         subprocess.Popen("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.exe")
     elif result == 'powerpoint':
-        audio_player = AudioPlayer()
-        audio_player.play("PowerPoint se ha abierto")
         subprocess.Popen("C:\\Program Files\\Microsoft Office\\root\\Office16\\POWERPNT.exe")
     elif result == 'volumeup':
-        audio_player = AudioPlayer()
-        audio_player.play("Up")
-    elif result == 'volumelow':
-        audio_player = AudioPlayer()
-        audio_player.play("low")
-        pygame.mixer.init()
-        # Disminuir el volumen en un 10%
-        pygame.mixer.music.set_volume(-0.1)
+        pyautogui.press('volumeup')
+    elif result == 'volumedown':
+        pyautogui.press('volumedown')
     return result, score
 
 
@@ -86,10 +74,12 @@ def remove_background(frame):
 
 
 # Camera
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # Replace 1 with the camera index
 camera.set(10, 200)
 
 while camera.isOpened():
+    syntax_analyzer = SyntaxAnalyzer()
+    syntax_analyzer.analyze_syntax()
     ret, frame = camera.read()
     frame = cv2.bilateralFilter(frame, 5, 50, 100)  # smoothing filter
     frame = cv2.flip(frame, 1)  # flip the frame horizontally
