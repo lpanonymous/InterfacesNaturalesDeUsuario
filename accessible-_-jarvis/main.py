@@ -1,11 +1,12 @@
 import threading
-from gesture_recognition import gesture_recognition
+from gesture_recognition import GestureRecognition
 from voice_recognition import voice_recognition
 
 if __name__ == "__main__":
     terminate_flag = threading.Event()
     # Crear los hilos para reconocimiento de gestos y de voz
-    thread1 = threading.Thread(target=gesture_recognition,args=(terminate_flag,))
+    gesture_recognition_instance = GestureRecognition()
+    thread1 = threading.Thread(target=gesture_recognition_instance.gesture_recognition, args=(terminate_flag,))
     thread2 = threading.Thread(target=voice_recognition, args=(terminate_flag,))
 
     # Iniciar los hilos
