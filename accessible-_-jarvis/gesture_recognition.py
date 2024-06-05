@@ -18,6 +18,7 @@ class GestureRecognition:
         self.__bgSubThreshold = 50
         self.__learningRate = 0
         self.__isBgCaptured = False
+        self.__bgSubThreshold = 50
 
     def predict_rgb_image_vgg(self, image):
         image = np.array(image, dtype='float32')
@@ -90,6 +91,10 @@ class GestureRecognition:
                 cv2.drawContours(drawing, [hull], 0, (0, 0, 255), 3)
             k = cv2.waitKey(10)
             if k == 32:
+                bgModel = cv2.createBackgroundSubtractorMOG2(0, self.__bgSubThreshold)
+                time.sleep(2)
+                isBgCaptured = 1
+                print('Background captured')
                 target = np.stack((thresh,) * 3, axis=-1)
                 target = cv2.resize(target, (224, 224))
                 target = target.reshape(1, 224, 224, 3)
